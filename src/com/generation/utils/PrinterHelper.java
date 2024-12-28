@@ -1,6 +1,7 @@
 package com.generation.utils;
 
 import com.generation.model.Student;
+import com.generation.service.StudentService;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -38,15 +39,26 @@ public class PrinterHelper
         String id = scanner.next();
         System.out.println( "| Enter student email:                |" );
         String email = scanner.next();
-        System.out.println( "| Enter student birth date(mm/dd/yyyy)|" );
-        DateFormat formatter = new SimpleDateFormat( "mm/dd/yyyy");
+
         //TODO validate date format and catch exception to avoid crash
-        Date birthDate = formatter.parse( scanner.next());
+        DateFormat formatter = new SimpleDateFormat( "MM/dd/yyyy");
+        Date birthDate = null;
+        do{
+            System.out.println( "| Enter student birth date(MM/dd/yyyy)|" );
+            try {
+                birthDate = formatter.parse(scanner.next());
+
+            } catch (ParseException e){
+
+            }
+        }while (birthDate == null);
+
         System.out.println( "|-------------------------------------|" );
-        Student student = new Student( id, name, email, birthDate );
+        Student student = new Student( id, name, email, birthDate);
         System.out.println( "Student Successfully Registered! " );
         System.out.println(student);
         return student;
     }
+
 
 }

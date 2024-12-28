@@ -87,6 +87,27 @@ public class Main
 
     private static void gradeStudent( StudentService studentService, Scanner scanner )
     {
+        System.out.println("Enter student ID: ");
+        String studentId = scanner.next();
+        Student student = studentService.findStudent(studentId);
+
+        if (student == null) {
+            System.out.println("Invalid Student ID");
+            return;
+        }
+
+        System.out.println("Enter course ID to grade: ");
+        String courseId = scanner.next();
+        if (!student.isAttendingCourse(courseId)) {
+            System.out.println("Student is not enrolled in this course.");
+            return;
+        }
+
+        System.out.println("Enter grade for the course:");
+        int grade = scanner.nextInt();
+        student.setAverage(grade);
+
+        System.out.println("Grade has been assigned.");
 
     }
 
@@ -112,4 +133,7 @@ public class Main
         Student student = PrinterHelper.createStudentMenu( scanner );
         studentService.subscribeStudent( student );
     }
+
+
+
 }

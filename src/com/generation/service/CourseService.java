@@ -13,7 +13,7 @@ public class CourseService
 {
     private final Map<String, Course> courses = new HashMap<>();
 
-    private final Map<String, List<Student>> enrolledStudents = new HashMap<>();
+    public final Map<String, List<Student>> enrolledStudents = new HashMap<>();
 
     public CourseService()
     {
@@ -74,7 +74,6 @@ public class CourseService
             }
         }
     }
-
 
     public void showSummary()
     {
